@@ -1,24 +1,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_flutter/answer.dart';
+import 'package:quiz_flutter/questions.dart';
 
 main() => runApp(PerguntaApp());
 
-class PerguntaAppState extends State<PerguntaApp> {
-  var perguntaSelecionada = 0;
+class _PerguntaAppState extends State<PerguntaApp> {
+  var _perguntaSelecionada = 0;
 
-  void resposta() {
+  void _responder() {
     setState(() {
-      perguntaSelecionada++;
+      _perguntaSelecionada++;
     });
     print("Pergunta Respondida");
   }
 
   @override
   Widget build(BuildContext context) {
-    final questions = [
-      "What's your favorite color?",
-      "What's your favorite animal?",
+    final perguntas = [
+      {
+        "texto": "Qual é sua cor favorita?",
+        "respostas": ["Preto", "Vermelho", "Verde", "Azul"],
+      },
+      {
+        "texto": "Qual é sua animal favorito?",
+        "respostas": ["Coelho", "Cobra", "Gato", "Cachorro"],
+      },
+      {
+        "texto": "Qual é seu instrutor favorito?",
+        "respostas": ["Maria", "João", "Stenio", "Pedro"],
+      },
     ];
+
+    List<String> resposta = perguntas[_perguntaSelecionada]["respostas"];
+    List<Widget> respostas =
+        resposta.map((t) => Resposta(t, _responder)).toList();
 
     return MaterialApp(
       home: Scaffold(
@@ -26,33 +42,18 @@ class PerguntaAppState extends State<PerguntaApp> {
         appBar: AppBar(
           backgroundColor: Colors.red[700],
           title: Center(
-              child: Text("Quiz", style: TextStyle(color: Colors.white))),
+            child: Text(
+              "Quiz",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
         ),
         body: Column(
           children: <Widget>[
-            Text(questions[perguntaSelecionada],
-                style: TextStyle(color: Colors.white)),
-            ElevatedButton(
-              child: Text("Answer 1", style: TextStyle(color: Colors.white)),
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.red.shade400)),
-              onPressed: resposta,
+            Questao(
+              perguntas[_perguntaSelecionada]["texto"],
             ),
-            ElevatedButton(
-              child: Text("Answer 2", style: TextStyle(color: Colors.white)),
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.blue.shade400)),
-              onPressed: resposta,
-            ),
-            ElevatedButton(
-              child: Text("Answer 3", style: TextStyle(color: Colors.white)),
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.green.shade400)),
-              onPressed: resposta,
-            ),
+            ...respostas,
           ],
         ),
       ),
@@ -61,7 +62,7 @@ class PerguntaAppState extends State<PerguntaApp> {
 }
 
 class PerguntaApp extends StatefulWidget {
-  PerguntaAppState createState() {
-    return PerguntaAppState();
+  _PerguntaAppState createState() {
+    return _PerguntaAppState();
   }
 }
