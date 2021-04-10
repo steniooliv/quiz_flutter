@@ -1,6 +1,6 @@
-<h1 align="center">
+<p align="center">
   <img src="/assets/icon/icon.png" alt="Quiz Logo" width="200"/>
-<h1>
+<p>
 
 # Quiz Geek em Flutter
 
