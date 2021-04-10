@@ -7,14 +7,16 @@ class Resultado extends StatelessWidget {
   Resultado(this.pontuacao, this.reiniciarQuestionario);
 
   String get fraseResultado {
-    if (pontuacao < 10) {
-      return "Tá ruim hein, credo!";
+    if (pontuacao < 1) {
+      return "Você acertou $pontuacao, tá ruim hein, credo!";
+    } else if (pontuacao < 11) {
+      return "Você acertou $pontuacao, não fez mais que obrigação!";
     } else if (pontuacao < 20) {
-      return "Não fez mais que obrigação!";
-    } else if (pontuacao < 30) {
-      return "É... tá chegando lá!";
+      return "Você acertou $pontuacao, É... tá chegando lá!";
+    } else if (pontuacao < 31) {
+      return "Você acertou $pontuacao, Parabéns, você é quase um Jedi!";
     } else {
-      return "Nível Jedi!";
+      return "Você acertou $pontuacao, Você é um verdadeiro Mestre Jedi!";
     }
   }
 
@@ -30,12 +32,14 @@ class Resultado extends StatelessWidget {
               fontSize: 28,
               color: Colors.white,
             ),
+            textAlign: TextAlign.center,
           ),
         ),
+        Padding(padding: EdgeInsets.all(50)),
         TextButton(
             onPressed: reiniciarQuestionario,
             child: Text(
-              "Reiniciar",
+              "Reiniciar?",
               style: TextStyle(
                 color: Colors.red,
                 fontSize: 20,
