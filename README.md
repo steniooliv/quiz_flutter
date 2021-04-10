@@ -1,4 +1,4 @@
-![Quiz Logo](/assets/icon/icon.png)
+![Quiz Logo](/assets/icon/icon.png =200x)
 
 
 # Quiz Geek em Flutter
