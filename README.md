@@ -1,3 +1,6 @@
+![Quiz Logo](/assets/icon\icon.png)
+
+
 # Quiz Geek em Flutter
 
 Aplicativo de Quiz feito em Flutter, são 30 perguntas sobre temas Geek básicos onde no final do quiz é exibido o resultado para o usuário. Dependendo da quantidade de acertos o usuário recebe uma mensagem personalizada.
